@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView, ListView
 
-# Create your views here.
+from mailings.models import Mailings
+
+
+class BaseTemplateView(TemplateView):
+    template_name = 'mailings/base.html'
+
+
+class MailingsListView(ListView):
+    model = Mailings
