@@ -17,15 +17,15 @@
     <tbody>
     {% for object in object_list %}
     <tr>
-        <th scope="row">{{ object.id }}</th>
+        <th scope="row">{{ object.pk }}</th>
         <td>{{ object.mailing_name }}</td>
         <td>{{ object.status }}</td>
         <td>{{ object.period }}</td>
         <td>{{ object.is_active }}</td>
         <td class="actions-column">
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                <button type="button" class="btn btn-warning">Редактировать</button>
-                <button type="button" class="btn btn-danger">Удалить</button>
+                <a href="{% url 'mailings:mailing_edit' object.pk %}" type="button" class="btn btn-warning">Редактировать</a>
+                <a href="{% url 'mailings:mailing_delete' object.pk %}" type="button" class="btn btn-danger">Удалить</a>
             </div>
         </td>
     </tr>
@@ -34,7 +34,7 @@
 </table>
 
 <div class="container text-center">
-    <button type="button" class="btn btn-success">Создать рассылку</button>
+    <a href="{% url 'mailings:mailing_create' %}" class="btn btn-success">Создать рассылку</a>
 </div>
 
 {% endblock %}
