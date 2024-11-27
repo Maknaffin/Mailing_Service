@@ -1,10 +1,9 @@
 from django import forms
 
-from mailings.models import Mailings, Message
+from mailings.models import Mailings, Message, Clients
 
 
 class MailingForm(forms.ModelForm):
-
     class Meta:
         model = Mailings
         fields = '__all__'
@@ -16,9 +15,19 @@ class MailingForm(forms.ModelForm):
 
 
 class MessageForm(forms.ModelForm):
-
     class Meta:
         model = Message
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Clients
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

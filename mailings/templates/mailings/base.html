@@ -140,7 +140,8 @@
                    href="{% url 'mailings:mailing_list' %}">Мои рассылки</a>
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none {% if 'message' in request.path %} active {% endif %}"
                    href="{% url 'mailings:message_list' %}">Мои сообщения</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Мои клиенты</a>
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none {% if 'client' in request.path %} active {% endif %}"
+                   href="{% url 'mailings:client_list' %}">Мои клиенты</a>
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Блог</a>
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Войти</a>
                 <a class="py-2 link-body-emphasis text-decoration-none" href="#">Регистрация</a>
