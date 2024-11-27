@@ -52,7 +52,7 @@ class Mailings(models.Model):
     next_try = models.DateTimeField(verbose_name='следующая попытка', **NULLABLE)
     period = models.CharField(max_length=15, choices=PERIOD_CHOICES, verbose_name='периодичность')
     status = models.CharField(max_length=15, default='Создана', choices=STATUS_CHOICES, verbose_name='статус рассылки')
-    client_email = models.ManyToManyField(Clients, verbose_name="контактный email")
+    client_email = models.ManyToManyField(Clients, verbose_name='контактный email')
     mailing_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='пользователь',
                                       **NULLABLE)
     mail_title = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='тема рассылки',
