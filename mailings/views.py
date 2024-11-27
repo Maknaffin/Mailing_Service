@@ -8,7 +8,14 @@ from mailings.models import Mailings, Message, Clients
 
 
 class BaseTemplateView(TemplateView):
-    template_name = 'mailings/base.html'
+    template_name = 'mailings/statistics.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['full_list'] = Mailings.objects.all().count()
+        context_data['active_list'] = Mailings.objects.filter(is_active=True).count()
+        context_data['unique_clients_list'] = Clients.objects.all().count()
+        return context_data
 
 
 class MailingsListView(ListView):
