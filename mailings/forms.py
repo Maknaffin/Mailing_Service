@@ -3,34 +3,26 @@ from django import forms
 from mailings.models import Mailings, Message, Clients
 
 
-class MailingForm(forms.ModelForm):
+class StyleMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class MailingForm(StyleMixin, forms.ModelForm):
     class Meta:
         model = Mailings
         fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
 
-
-class MessageForm(forms.ModelForm):
+class MessageForm(StyleMixin, forms.ModelForm):
     class Meta:
         model = Message
         fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
 
-
-class ClientForm(forms.ModelForm):
+class ClientForm(StyleMixin, forms.ModelForm):
     class Meta:
         model = Clients
         fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
