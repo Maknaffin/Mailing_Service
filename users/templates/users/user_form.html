@@ -6,7 +6,7 @@
         <form class="row" method="post" enctype="multipart/form-data">
             <div class="container text-center">
                 <div class="card">
-                    <div class="card-header">Редактирование профиля</div>
+                    <div class="card-header">Редактирование профиля {{ object.username }}</div>
                     <div class="card-body">
                         {% csrf_token %}
                         {{ form.as_p }}
