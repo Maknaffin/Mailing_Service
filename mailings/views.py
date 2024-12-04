@@ -28,6 +28,12 @@ class MailingsCreateView(CreateView):
     success_url = reverse_lazy('mailings:mailing_list')
     form_class = MailingForm
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.mailing_owner = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
 
 class MailingsUpdateView(UpdateView):
     model = Mailings
@@ -51,6 +57,12 @@ class MessageCreateView(CreateView):
     success_url = reverse_lazy('mailings:message_list')
     form_class = MessageForm
 
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.message_owner = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
 
 class MessageUpdateView(UpdateView):
     model = Message
@@ -73,6 +85,12 @@ class ClientCreateView(CreateView):
     # fields = '__all__'
     success_url = reverse_lazy('mailings:client_list')
     form_class = ClientForm
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.client_owner = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class ClientUpdateView(UpdateView):
