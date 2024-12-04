@@ -12,14 +12,19 @@ class BaseTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data['full_list'] = Mailings.objects.all().count()
-        context_data['active_list'] = Mailings.objects.filter(is_active=True).count()
-        context_data['unique_clients_list'] = Clients.objects.all().count()
+        context_data['full_list'] = Mailings.objects.filter(mailing_owner=self.request.user).count()
+        context_data['active_list'] = Mailings.objects.filter(is_active=True, mailing_owner=self.request.user).count()
+        context_data['count_clients'] = Clients.objects.filter(client_owner=self.request.user).count()
         return context_data
 
 
 class MailingsListView(ListView):
     model = Mailings
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(mailing_owner=self.request.user)
+        return queryset
 
 
 class MailingsCreateView(CreateView):
@@ -50,6 +55,11 @@ class MailingsDeleteView(DeleteView):
 class MessageListView(ListView):
     model = Message
 
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(message_owner=self.request.user)
+        return queryset
+
 
 class MessageCreateView(CreateView):
     model = Message
@@ -78,6 +88,11 @@ class MessageDeleteView(DeleteView):
 
 class ClientListView(ListView):
     model = Clients
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(client_owner=self.request.user)
+        return queryset
 
 
 class ClientCreateView(CreateView):
