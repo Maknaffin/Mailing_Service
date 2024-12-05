@@ -2,9 +2,9 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
-from django.contrib.auth.views import LoginView as BaseLoginView
+from django.contrib.auth.views import LoginView as BaseLoginView, PasswordChangeView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
-from users.forms import UserRegisterForm, UserProfileForm, UserLoginForm
+from users.forms import UserRegisterForm, UserProfileForm, UserLoginForm, UserPasswordChangeForm
 from users.models import User
 
 
@@ -29,6 +29,7 @@ class ProfileView(UpdateView):
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
+    template_name = 'users/profile.html'
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -41,3 +42,9 @@ class LoginView(BaseLoginView):
 
 class LogoutView(BaseLogoutView):
     pass
+
+
+class UserPasswordChange(PasswordChangeView):
+    form_class = UserPasswordChangeForm
+    success_url = reverse_lazy("users:password_change_done")
+    template_name = "users/password_change_form.html"

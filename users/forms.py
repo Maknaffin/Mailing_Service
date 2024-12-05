@@ -1,5 +1,8 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, UsernameField
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, UsernameField, \
+    PasswordChangeForm
 from django import forms
+from prompt_toolkit.validation import ValidationError
 
 from users.models import User
 
@@ -41,3 +44,10 @@ class UserLoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ('email', 'password')
+
+
+class UserPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(label="Старый пароль", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    new_password1 = forms.CharField(label="Новый пароль", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    new_password2 = forms.CharField(label="Подтверждение пароля",
+                                    widget=forms.PasswordInput(attrs={'class': 'form-control'}))

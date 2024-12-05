@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -12,13 +13,16 @@ class BaseTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data['full_list'] = Mailings.objects.filter(mailing_owner=self.request.user).count()
-        context_data['active_list'] = Mailings.objects.filter(is_active=True, mailing_owner=self.request.user).count()
-        context_data['count_clients'] = Clients.objects.filter(client_owner=self.request.user).count()
+        # context_data['full_list'] = Mailings.objects.filter(mailing_owner=self.request.user).count()
+        context_data['full_list'] = Mailings.objects.all().count()
+        # context_data['active_list'] = Mailings.objects.filter(is_active=True, mailing_owner=self.request.user).count()
+        context_data['active_list'] = Mailings.objects.all().count()
+        # context_data['count_clients'] = Clients.objects.filter(client_owner=self.request.user).count()
+        context_data['count_clients'] = Clients.objects.all().count()
         return context_data
 
 
-class MailingsListView(ListView):
+class MailingsListView(LoginRequiredMixin, ListView):
     model = Mailings
 
     def get_queryset(self, *args, **kwargs):
@@ -52,7 +56,7 @@ class MailingsDeleteView(DeleteView):
     success_url = reverse_lazy('mailings:mailing_list')
 
 
-class MessageListView(ListView):
+class MessageListView(LoginRequiredMixin, ListView):
     model = Message
 
     def get_queryset(self, *args, **kwargs):
@@ -86,7 +90,7 @@ class MessageDeleteView(DeleteView):
     success_url = reverse_lazy('mailings:message_list')
 
 
-class ClientListView(ListView):
+class ClientListView(LoginRequiredMixin, ListView):
     model = Clients
 
     def get_queryset(self, *args, **kwargs):
