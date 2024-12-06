@@ -35,7 +35,10 @@
 </table>
 
 <div class="container text-center">
-    <a href="{% url 'mailings:mailing_create' %}" class="btn btn-success">Создать рассылку</a>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a href="{% url 'mailings:mailing_create' %}" type="button" class="btn btn-success">Создать рассылку</a>
+        <a href="{% url 'mailings:log_list' %}" type="button" class="btn btn-secondary">Отчет</a>
+    </div>
 </div>
 
 {% endblock %}
