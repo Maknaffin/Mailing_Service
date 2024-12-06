@@ -153,11 +153,12 @@
                 {% endif %}
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Блог</a>
                 {% if user.is_authenticated %}
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:logout' %}">Выйти</a>
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none {% if 'profile' in request.path %} active {% endif %}"
                    href="{% url 'users:profile' %}">Профиль</a>
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:logout' %}">Выйти</a>
                 {% else %}
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:login' %}">Вход и регистрация</a>
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:login' %}">Вход и
+                    регистрация</a>
                 {% endif %}
             </nav>
 
