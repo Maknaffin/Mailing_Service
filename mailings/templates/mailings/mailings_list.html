@@ -3,6 +3,12 @@
 {% block content %}
 <h2 class="display-6 text-center p-4 mb-4">Рассылки</h2>
 
+<div class="d-flex justify-content-end mb-3">
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a href="{% url 'mailings:mailing_create' %}" type="button" class="btn btn-success">Создать рассылку</a>
+        <a href="{% url 'mailings:log_list' %}" type="button" class="btn btn-secondary">Отчет</a>
+    </div>
+</div>
 
 <table class="table table-striped table-hover">
     <thead>
@@ -33,12 +39,5 @@
     {% endfor %}
     </tbody>
 </table>
-
-<div class="container text-center">
-    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <a href="{% url 'mailings:mailing_create' %}" type="button" class="btn btn-success">Создать рассылку</a>
-        <a href="{% url 'mailings:log_list' %}" type="button" class="btn btn-secondary">Отчет</a>
-    </div>
-</div>
 
 {% endblock %}
