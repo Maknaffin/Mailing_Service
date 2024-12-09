@@ -1,11 +1,11 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
 from mailings.forms import MailingForm, MessageForm, ClientForm
-from mailings.models import Mailings, Message, Clients
+from mailings.models import Mailings, Message, Clients, Logs
 
 
 class BaseTemplateView(TemplateView):
@@ -22,8 +22,9 @@ class BaseTemplateView(TemplateView):
         return context_data
 
 
-class MailingsListView(LoginRequiredMixin, ListView):
+class MailingsListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
     model = Mailings
+    permission_required = 'mailings.view_mailings'
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
@@ -122,3 +123,12 @@ class ClientUpdateView(UpdateView):
 class ClientDeleteView(DeleteView):
     model = Clients
     success_url = reverse_lazy('mailings:client_list')
+
+
+class LogListView(LoginRequiredMixin, ListView):
+    model = Logs
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset(*args, **kwargs)
+        queryset = queryset.filter(logs_owner=self.request.user)
+        return queryset

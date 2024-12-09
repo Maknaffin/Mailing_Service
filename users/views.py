@@ -1,15 +1,15 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import LoginView as BaseLoginView, PasswordChangeView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
 from users.forms import UserRegisterForm, UserProfileForm, UserLoginForm, UserPasswordChangeForm
-from users.models import User
 
 
 class RegisterView(CreateView):
-    model = User
+    model = get_user_model()
     form_class = UserRegisterForm
     template_name = 'users/register.html'
     success_url = reverse_lazy('users:login')
@@ -26,7 +26,7 @@ class RegisterView(CreateView):
 
 
 class ProfileView(UpdateView):
-    model = User
+    model = get_user_model()
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
     template_name = 'users/profile.html'
