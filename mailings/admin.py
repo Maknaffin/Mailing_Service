@@ -15,5 +15,5 @@ class ClientsAdmin(admin.ModelAdmin):
 
 @admin.register(Mailings)
 class MailingsAdmin(admin.ModelAdmin):
-    list_display = ('mailing_name', 'mailing_start', 'mailing_finish', 'next_try', 'period', 'status',
+    list_display = ('mailing_name', 'mailing_start', 'mailing_finish', 'next_try', 'period', 'mailing_status',
                     'mailing_owner', 'mail_title', 'is_active')

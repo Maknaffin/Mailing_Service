@@ -6,13 +6,19 @@
         <form class="row" method="post" enctype="multipart/form-data">
             <div class="container text-center">
                 <div class="card">
-                    <div class="card-header">Создание рассылки</div>
+                    {% if object %}
+                    <div class="card-header">Редактировать рассылку</div>
+                    {% else %}
+                    <div class="card-header">Создать рассылку</div>
+                    {% endif %}
                     <div class="card-body">
-
                         {% csrf_token %}
                         {{ form.as_p }}
+                        {% if object %}
+                        <button type="submit" class="btn btn-success">Обновить</button>
+                        {% else %}
                         <button type="submit" class="btn btn-success">Создать</button>
-
+                        {% endif %}
                     </div>
                 </div>
             </div>

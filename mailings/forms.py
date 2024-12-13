@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import DateTimeInput, Select
+from django.forms import DateTimeInput
 
 from mailings.models import Mailings, Message, Clients
 
@@ -21,12 +21,10 @@ class MailingForm(StyleMixin, forms.ModelForm):
                                         label='Дата и время начала рассылки')
     mailing_finish = forms.DateTimeField(widget=DateTimeInput(attrs={'type': 'datetime-local'}),
                                          label='Дата и время окончания рассылки')
-    next_try = forms.DateTimeField(widget=DateTimeInput(attrs={'type': 'datetime-local'}),
-                                   label='Дата и время следующей попытки')
 
     class Meta:
         model = Mailings
-        exclude = ('mailing_owner',)
+        exclude = ('mailing_owner', 'mailing_status', 'next_try',)
 
 
 class MessageForm(StyleMixin, forms.ModelForm):

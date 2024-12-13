@@ -24,10 +24,10 @@
     docker-compose up --build
 5. После запуска контейнеров выполните миграции базы данных:
     ```bash
-    docker-compose exec web python manage.py migrate
+    docker-compose exec app python manage.py migrate
 6. Создайте суперпользователя для админ-панели:
     ```bash
-   docker-compose exec web python manage.py createsuperuser
+   docker-compose exec app python manage.py csu
 7. Перейдите по адресу http://localhost:8000/ в вашем браузере.
 
 ## Использование
