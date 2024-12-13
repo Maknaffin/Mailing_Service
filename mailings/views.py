@@ -1,11 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.forms import inlineformset_factory
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
 from mailings.forms import MailingForm, MessageForm, ClientForm
 from mailings.models import Mailings, Message, Clients, Logs
+from mailings.services import set_period
 
 
 class BaseTemplateView(TemplateView):
@@ -22,9 +21,9 @@ class BaseTemplateView(TemplateView):
         return context_data
 
 
-class MailingsListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
+class MailingsListView(LoginRequiredMixin, ListView):
     model = Mailings
-    permission_required = 'mailings.view_mailings'
+    # permission_required = 'mailings.view_mailings'
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset(*args, **kwargs)
@@ -34,22 +33,29 @@ class MailingsListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
 
 class MailingsCreateView(CreateView):
     model = Mailings
-    # fields = '__all__'
     success_url = reverse_lazy('mailings:mailing_list')
     form_class = MailingForm
 
     def form_valid(self, form):
         self.object = form.save()
         self.object.mailing_owner = self.request.user
+        self.object.next_try = set_period()
         self.object.save()
         return super().form_valid(form)
 
 
 class MailingsUpdateView(UpdateView):
     model = Mailings
-    # fields = '__all__'
     success_url = reverse_lazy('mailings:mailing_list')
     form_class = MailingForm
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.model.mailing_status = self.object.mailing_status
+        self.object.mailing_owner = self.request.user
+        self.object.next_try = set_period()
+        self.object.save()
+        return super().form_valid(form)
 
 
 class MailingsDeleteView(DeleteView):
@@ -68,7 +74,6 @@ class MessageListView(LoginRequiredMixin, ListView):
 
 class MessageCreateView(CreateView):
     model = Message
-    # fields = '__all__'
     success_url = reverse_lazy('mailings:message_list')
     form_class = MessageForm
 
@@ -81,7 +86,6 @@ class MessageCreateView(CreateView):
 
 class MessageUpdateView(UpdateView):
     model = Message
-    # fields = '__all__'
     success_url = reverse_lazy('mailings:message_list')
     form_class = MessageForm
 
@@ -102,7 +106,6 @@ class ClientListView(LoginRequiredMixin, ListView):
 
 class ClientCreateView(CreateView):
     model = Clients
-    # fields = '__all__'
     success_url = reverse_lazy('mailings:client_list')
     form_class = ClientForm
 
@@ -115,7 +118,6 @@ class ClientCreateView(CreateView):
 
 class ClientUpdateView(UpdateView):
     model = Clients
-    # fields = '__all__'
     success_url = reverse_lazy('mailings:client_list')
     form_class = ClientForm
 
