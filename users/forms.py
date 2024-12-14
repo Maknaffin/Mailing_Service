@@ -2,9 +2,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, UsernameField, \
     PasswordChangeForm
 from django import forms
-from prompt_toolkit.validation import ValidationError
-
-from users.models import User
 
 
 class StyleMixin:
@@ -16,7 +13,7 @@ class StyleMixin:
 
 class UserRegisterForm(UserCreationForm):
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('name', 'email', 'avatar', 'password1', 'password2')
 
     def __init__(self, *args, **kwargs):
@@ -27,8 +24,8 @@ class UserRegisterForm(UserCreationForm):
 
 class UserProfileForm(StyleMixin, UserChangeForm):
     class Meta:
-        model = User
-        fields = ('name', 'email', 'avatar')
+        model = get_user_model()
+        fields = ('avatar', 'name', 'email')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -42,7 +39,7 @@ class UserLoginForm(AuthenticationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'floatingPassword', 'placeholder': 'Пароль'}))
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('email', 'password')
 
 

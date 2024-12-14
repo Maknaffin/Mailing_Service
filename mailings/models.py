@@ -47,11 +47,11 @@ class Clients(models.Model):
 
 class Mailings(models.Model):
     mailing_name = models.CharField(max_length=150, verbose_name='название рассылки', default=None)
-    mailing_start = models.DateTimeField(verbose_name='время начала рассылки', default=None)
-    mailing_finish = models.DateTimeField(verbose_name='время окончания рассылки', default=None)
-    next_try = models.DateTimeField(verbose_name='следующая попытка', **NULLABLE)
+    mailing_start = models.DateTimeField(verbose_name='дата и время начала рассылки', default=None)
+    mailing_finish = models.DateTimeField(verbose_name='дата и время окончания рассылки', default=None)
+    next_try = models.DateTimeField(verbose_name='дата и время следующей попытки', **NULLABLE)
     period = models.CharField(max_length=15, choices=PERIOD_CHOICES, verbose_name='периодичность')
-    status = models.CharField(max_length=15, default='Создана', choices=STATUS_CHOICES, verbose_name='статус рассылки')
+    mailing_status = models.CharField(max_length=15, default='Создана', choices=STATUS_CHOICES, verbose_name='статус рассылки')
     client_email = models.ManyToManyField(Clients, verbose_name='контактный email')
     mailing_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='пользователь',
                                       **NULLABLE)
@@ -67,21 +67,21 @@ class Mailings(models.Model):
         verbose_name_plural = 'рассылки'
 
 
-# class Logs(models.Model):
-#     last_try = models.DateTimeField(auto_now=False, auto_now_add=False,
-#                                     verbose_name='дата и время последней попытки')
-#     status_try = models.CharField(max_length=20, verbose_name='статус попытки')
-#     server_answer = models.TextField(verbose_name='ответ сервера', **NULLABLE, default='')
-#     send_name = models.CharField(max_length=200, verbose_name='наименование рассылки',
-#                                  default=None)
-#     logs_owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='пользователь',
-#                                    on_delete=models.SET_NULL, **NULLABLE)
-#     send_email = models.EmailField(max_length=150, verbose_name='почта отправки', **NULLABLE)
-#
-#     def __str__(self):
-#         return f"{self.status_try}: {self.last_try}"
-#
-#     class Meta:
-#         verbose_name = 'лог'
-#         verbose_name_plural = 'логи'
-#         ordering = ('-last_try',)
+class Logs(models.Model):
+    last_try = models.DateTimeField(auto_now=False, auto_now_add=False,
+                                    verbose_name='дата и время последней попытки')
+    status_try = models.CharField(max_length=20, verbose_name='статус попытки')
+    server_answer = models.TextField(verbose_name='ответ сервера', **NULLABLE, default='')
+    send_name = models.CharField(max_length=200, verbose_name='наименование рассылки',
+                                 default=None)
+    logs_owner = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='пользователь',
+                                   on_delete=models.SET_NULL, **NULLABLE)
+    send_email = models.EmailField(max_length=150, verbose_name='почта отправки', **NULLABLE)
+
+    def __str__(self):
+        return f"{self.status_try}: {self.last_try}"
+
+    class Meta:
+        verbose_name = 'лог'
+        verbose_name_plural = 'логи'
+        ordering = ('-last_try',)

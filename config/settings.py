@@ -26,7 +26,7 @@ load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=#5x5cmez6-oz0rbq3^zq5tq2vt7_(#bsw2sl3vctl#dp_d!fs'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 
     'users',
     'mailings',
-    'blog'
+    'blog',
+    'django_apscheduler',
 ]
 
 MIDDLEWARE = [
@@ -84,9 +85,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mailing_service',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER_NAME'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 
