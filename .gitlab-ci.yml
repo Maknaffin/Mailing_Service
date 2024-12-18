@@ -1,11 +1,9 @@
-stages:
-  - deploy
-
-Deploy to stage:
+deploy:
   stage: deploy
   script:
-    - cp $ENV_STAGE .env
+    - cp $ENV_DEV .env
+    - bash deploy.sh
   only:
-    - main
+    - develop
   tags:
     - dev
