@@ -5,4 +5,4 @@
 #python3 manage.py collectstatic --no-input
 #deactivate
 docker-compose up --build -d
-docker-compose exec app python manage.py migrate
+#docker-compose exec app python manage.py migrate
