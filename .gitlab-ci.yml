@@ -9,6 +9,3 @@ Deploy to stage:
     - main
   tags:
     - dev
-
-# curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
-# sudo -E apt-get install gitla b-runner
