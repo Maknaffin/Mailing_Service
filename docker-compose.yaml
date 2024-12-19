@@ -11,7 +11,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', '-c', 'pg_isready -U $DATABASE_USER_NAME']
+      test: [ 'CMD-SHELL', '-c', 'pg_isready -U $DATABASE_USER_NAME' ]
       interval: 10s
       retries: 5
       timeout: 5s
@@ -21,14 +21,24 @@ services:
     tty: true
     command: >
       bash -c "python manage.py makemigrations 
-      && python manage.py migrate 
+      && python manage.py migrate
       && python manage.py runserver 0.0.0.0:8000"
-      && python manage.py runapscheduler"
     ports:
       - '8000:8000'
     depends_on:
       db:
         condition: service_healthy
+    volumes:
+      - .:/app
+
+  scheduler:
+    build: .
+    command: python manage.py runapscheduler
+    depends_on:
+      db:
+        condition: service_healthy
+      app:
+        condition: service_started
     volumes:
       - .:/app
 
