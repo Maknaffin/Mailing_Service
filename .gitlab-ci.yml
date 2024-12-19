@@ -1,9 +1,19 @@
-deploy:
+stages:
+  - build
+  #  - test
+  - deploy
+
+build-job:
+  stage: build
+  script:
+    - docker build -t my-backend-image .
+
+#test-job:
+#  stage: test
+#  script:
+#    - docker run --rm my-backend-image pytest -s -v
+
+deploy-job:
   stage: deploy
   script:
-    - cp $ENV_DEV .env
-    - bash deploy.sh
-  only:
-    - develop
-  tags:
-    - dev
+    - docker compose up -d
