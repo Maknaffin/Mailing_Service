@@ -16,4 +16,5 @@ build-job:
 deploy-job:
   stage: deploy
   script:
+    - cp $ENV_DEV .env
     - docker compose up -d
