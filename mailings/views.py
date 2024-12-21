@@ -8,7 +8,7 @@ from mailings.services import set_period
 
 
 class BaseTemplateView(TemplateView):
-    template_name = 'mailings/statistics.html'
+    template_name = 'mailings/main.html'
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)

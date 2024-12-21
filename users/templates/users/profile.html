@@ -1,25 +1,27 @@
-{% extends 'mailings/base.html' %}
+{% extends 'mailings/base_new.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col-auto">
-        {% if user.avatar %}
-        <img src="{{ user.avatar.url }}" class="img-fluid rounded-circle" style="width: 300px; height: 300px;"
-             alt="Профиль">
-        {% else %}
-        <img src="/media/users/default.png" class="img-fluid rounded-circle" style="width: 300px; height: 300px;"
-             alt="Профиль">
-        {% endif %}
-    </div>
-    <div class="col">
-        <form class="row" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <p><a href="{% url 'users:password_change' %}" type="button" class="btn btn-warning">
-                Сменить пароль
-            </a></p>
-            <button type="submit" class="btn btn-success">Сохранить</button>
-        </form>
+<div class="container p-5">
+    <div class="row">
+        <div class="col-auto">
+            {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" class="img-fluid rounded-circle" style="width: 300px; height: 300px;"
+                 alt="Профиль">
+            {% else %}
+            <img src="/media/users/default.png" class="img-fluid rounded-circle" style="width: 300px; height: 300px;"
+                 alt="Профиль">
+            {% endif %}
+        </div>
+        <div class="col">
+            <form class="row" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p><a href="{% url 'users:password_change' %}" type="button" class="btn btn-warning">
+                    Сменить пароль
+                </a></p>
+                <button type="submit" class="btn btn-success">Сохранить</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

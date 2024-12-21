@@ -1,0 +1,204 @@
+{% extends 'mailings/base_new.html' %}
+
+{% block content %}
+<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-theme="light">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <defs>
+                        <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color: rgba(0, 0, 0, 0); stop-opacity: 1"/>
+                            <stop offset="100%" style="stop-color: rgba(0, 0, 0, 0.8); stop-opacity: 1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                    <image href="https://jooinn.com/images/person-on-laptop-sending-virtual-envelopes.jpg"
+                           width="100%"
+                           height="100%"
+                           preserveAspectRatio="xMidYMid slice"/>
+                    <!-- Затемняющий градиент -->
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#fade)"/>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Пример заголовка.</h1>
+                        <p class="opacity-75">Некоторый репрезентативный контент-заполнитель для первого слайда
+                            карусели.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Зарегистрируйтесь сегодня</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <defs>
+                        <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color: rgba(0, 0, 0, 0); stop-opacity: 1"/>
+                            <stop offset="100%" style="stop-color: rgba(0, 0, 0, 0.8); stop-opacity: 1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                    <image href="https://www.elegantthemes.com/blog/wp-content/uploads/2020/10/email-inbox-featured-image-scaled.jpg"
+                           width="100%" height="100%"
+                           preserveAspectRatio="xMidYMid slice"/>
+                    <!-- Затемняющий градиент -->
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#fade)"/>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Еще один пример заголовка.</h1>
+                        <p>Некоторый репрезентативный контент-заполнитель для второго слайда карусели.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Узнать больше</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <defs>
+                        <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color: rgba(0, 0, 0, 0); stop-opacity: 1"/>
+                            <stop offset="100%" style="stop-color: rgba(0, 0, 0, 0.8); stop-opacity: 1"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                    <image href="https://strongtestimonials.com/wp-content/uploads/2021/03/how-to-ask-for-a-testimonial-scaled.jpg"
+                           width="100%" height="100%"
+                           preserveAspectRatio="xMidYMid slice"/>
+                    <!-- Затемняющий градиент -->
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#fade)"/>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>Еще один для верности.</h1>
+                        <p>Некоторый репрезентативный контент-заполнитель для третьего слайда этой карусели.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Просмотреть галерею</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Элементы управления каруселью -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+        </button>
+
+    </div>
+
+    <div class="container marketing">
+        <div class="row">
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Заполнитель</title>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <h2 class="fw-normal">Заголовок</h2>
+                <p>Некоторый репрезентативная заглушка для трех столбцов текста под каруселью. Это первый
+                    столбец.</p>
+                <p><a class="btn btn-secondary" href="#">Посмотреть подробности &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Заполнитель</title>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <h2 class="fw-normal">Заголовок</h2>
+                <p>Еще один захватывающий кусочек репрезентативного плейсхолдерного контента. На этот раз мы перешли
+                    ко второму
+                    столбцу.</p>
+                <p><a class="btn btn-secondary" href="#">Посмотреть подробности &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Заполнитель</title>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <h2 class="fw-normal">Заголовок</h2>
+                <p>И, наконец, это третий столбец репрезентативного плейсхолдерного контента.</p>
+                <p><a class="btn btn-secondary" href="#">Посмотреть подробности &raquo;</a></p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1">Первый заголовок короткометражки. <span
+                        class="text-body-secondary">Это вас потрясет.</span></h2>
+                <p class="lead">Здесь есть отличная заглушка для первого короткометражного фильма. Представьте себе
+                    захватывающую
+                    прозу здесь.</p>
+            </div>
+            <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                    <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                </svg>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading fw-normal lh-1">О да, это так хорошо. <span
+                        class="text-body-secondary">Посмотрите сами.</span></h2>
+                <p class="lead">Еще одна короткометражка? Конечно. Еще больше заглушек здесь, чтобы дать вам
+                    представление о том, как этот макет будет работать с некоторым реальным контентом на месте.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                    <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                </svg>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1">И последнее, это. <span
+                        class="text-body-secondary">Шах и мат.</span>
+                </h2>
+                <p class="lead">И да, это последний блок репрезентативного плейсхолдерного контента. Опять же, не
+                    предназначен для фактического чтения, просто здесь, чтобы дать вам лучшее представление о том,
+                    как это будет выглядеть с некоторым реальным контентом. Ваш контент.</p>
+            </div>
+            <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                     height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/>
+                    <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
+                </svg>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+    </div>
+</div>
+{% endblock %}

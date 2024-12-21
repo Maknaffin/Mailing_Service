@@ -1,6 +1,36 @@
 {% extends 'mailings/base.html' %}
 
 {% block content %}
+<!-- Кнопка-триггер модального окна -->
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">-->
+<!--    Запустите демо модального окна-->
+<!--</button>-->
+
+<!-- Модальное окно -->
+<!--<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="updateModalLabel">Что нового?</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <p><strong>Версия приложения:</strong> 1.0.0</p>-->
+<!--                <p><strong>Дата обновления:</strong> 20 декабря 2024</p>-->
+<!--                <ul>-->
+<!--                    <li>Добавлена новая функция рассылки уведомлений.</li>-->
+<!--                    <li>Исправлены ошибки в системе авторизации.</li>-->
+<!--                    <li>Улучшена производительность сайта.</li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
 <div class="header mx-auto text-center">
     <h1 class="display-4 fw-normal text-body-emphasis mb-5">Сервис рассылок</h1>
     <h3>Зарегистрированных рассылок <span class="badge bg-secondary mb-3">{{ full_list }}</span></h3>
